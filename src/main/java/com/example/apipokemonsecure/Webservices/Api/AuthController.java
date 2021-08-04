@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
@@ -30,6 +31,6 @@ public class AuthController {
             user.setPassword("");
             return ResponseEntity.ok().body(user);
         }
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User already exists");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User with this username already exists");
     }
 }
