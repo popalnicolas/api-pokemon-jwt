@@ -9,5 +9,6 @@ public interface PokemonService {
     List<Pokemon> getPokemonsById(int id);
     List<Pokemon> getPokemonsByType(int type);
     Pokemon savePokemon(Pokemon pokemon);
+    Pokemon likePokemon(Pokemon pokemon);
     void removePokemon(int id);
 }

@@ -12,9 +12,9 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
 @RestController
 @RequestMapping("/api/pokemon")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequiredArgsConstructor
 public class PokemonController {
 
@@ -42,7 +42,7 @@ public class PokemonController {
     @ResponseBody
     public ResponseEntity<Pokemon> likePokemon(@RequestBody Pokemon pokemon)
     {
-        return ResponseEntity.ok().body(pokemonService.savePokemon(pokemon));
+        return ResponseEntity.ok().body(pokemonService.likePokemon(pokemon));
     }
 
     @PostMapping

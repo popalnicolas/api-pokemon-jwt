@@ -45,6 +45,13 @@ public class PokemonServiceImpl implements PokemonService {
     }
 
     @Override
+    public Pokemon likePokemon(Pokemon pokemon) {
+        log.info("Liking pokemon with pokemon id {}", pokemon.getPokemonName());
+        pokemon.setPokemonLikes(pokemon.getPokemonLikes()+1);
+        return pokemonRepository.save(pokemon);
+    }
+
+    @Override
     public void removePokemon(int id) {
         log.info("Removing pokemon with id {} from the database", id);
         pokemonRepository.deleteById(id);
