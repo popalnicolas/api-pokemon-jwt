@@ -67,8 +67,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         token_cookie.setSecure(true);
         response.addCookie(token_cookie);
 
-        response.setHeader("Access-Control-Allow-Origin", "*");
-
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         new ObjectMapper().writeValue(response.getOutputStream(), tokens);
     }

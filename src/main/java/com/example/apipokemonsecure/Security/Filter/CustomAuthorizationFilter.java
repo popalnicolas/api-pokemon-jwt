@@ -13,10 +13,12 @@ import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -38,6 +40,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
         else
         {
             String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+
             if(authorizationHeader != null && authorizationHeader.startsWith("Bearer "))
             {
                 try{
@@ -70,5 +73,10 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request,response);
             }
         }
+    }
+
+    private String getTokenCookie(@CookieValue("token") String cookie)
+    {
+        return cookie;
     }
 }
