@@ -64,7 +64,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
         Cookie token_cookie = new Cookie("token", tokens.get("token"));
         token_cookie.setHttpOnly(true);
-        token_cookie.setSecure(true);
+        token_cookie.setSecure(false); //can be set to true on https
         response.addCookie(token_cookie);
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
