@@ -36,7 +36,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        log.info("Logging user with username: {} and password: {}", username, password);
+        log.info("Logging user with username: {} and password: *****", username);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
         return authenticationManager.authenticate(authenticationToken);
     }
@@ -65,6 +65,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         Cookie token_cookie = new Cookie("token", tokens.get("token"));
         token_cookie.setHttpOnly(true);
         token_cookie.setSecure(false); //can be set to true on https
+        token_cookie.setPath("/");
+        token_cookie.setMaxAge(60 * 60);
         response.addCookie(token_cookie);
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
