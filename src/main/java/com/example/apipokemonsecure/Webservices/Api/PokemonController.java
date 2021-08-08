@@ -20,7 +20,7 @@ public class PokemonController {
 
     private final PokemonService pokemonService;
 
-    @GetMapping
+    @GetMapping("/list")
     @ResponseBody
     public ResponseEntity<List<Pokemon>> getAllPokemons(@RequestParam Optional<Integer> id, @RequestParam Optional<Integer> type)
     {
